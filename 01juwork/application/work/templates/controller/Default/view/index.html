@@ -1,0 +1,83 @@
+{extend name="public:base" /}
+<!--导航-->
+{block name="nav"}{include file="{controller}:nav" /}{/block}
+{block name="search"}{include file="{controller}:search" /}{/block}
+<!--主体内容-->
+{block name="content"}
+<form class="form-list" id="form-list" onsubmit="return false">
+	{$html_table}
+	<div class="page-box">{:page_html($res.data.pageinfo)}</div>
+</form>
+<div class="md-buttom-bar clearfix"></div>
+{notempty name="res.data.list"}
+<div class="buttom-bar">
+	<div class="btn blue btn-100px fl mr10" onclick="selectAll({tag:'.form-list'})">全选/反选</div> <div class="btn red btn-100px fl mr10" onclick="deleteSelect()">删除记录</div>
+	{:form_item(
+			array(
+				'formtype'		=>'select',
+				'label'			=>'状态',
+				'name'			=>'status',
+				'data'			=> [[1,'启用'],[0,'停用']],
+				'field'			=>[0,1],
+				'next_btn'		=>'<button class="btn btn-info" onclick="setStatus($(this))">设置状态</button>',
+				'is_first'		=>0,
+				'input_group_attr' => 'style="width:200px;float:left;margin-right:10px;"',
+			)		
+	)}
+	<div class="clearfix"></div>
+</div>
+{/notempty}
+{/block}
+
+<!--脚本-->
+{block name="javascript"}
+<script>
+	function deleteSelect(){
+		var size = $('.form-list input[type="checkbox"]:checked').size();
+		if(size < 1){
+			toast({msg:'请至少选择一条记录！'});
+			return;
+		}
+		var data = getFormJson('#form-list');
+		vmodal_confirm({
+			title:'删除记录',
+			msg:'<h3 class="text-center">真的要删除记录吗？</h3>',
+			url:'{:url(request()->controller().'/deleteSelect')}',
+			data:data,
+			success:function(ret){
+				toast(ret);
+				if(ret.code == 1){
+					$('.form-list input[type="checkbox"]:checked').each(function(){
+						$(this).closest('tr').remove();
+					});
+					
+					$('.ajax-modal').modal('hide');
+				}
+			}
+		});
+	}
+	
+	function setStatus(obj){
+		var size = $('.form-list input[type="checkbox"]:checked').size();
+		if(size < 1){
+			toast({msg:'请至少选择一条记录！'});
+			return;
+		}
+		
+		var data = getFormJson('#form-list');
+		data.field 	= obj.closest('.input-group').find('select').attr('name');
+		data.value	= obj.closest('.input-group').find('select').val();
+		//console.log(data);
+		ajax_post({
+			url:'{:url(request()->controller().'/setStatus')}',
+			data:data,
+			success:function(ret){
+				toast(ret);
+				setTimeout(function(){
+					location.reload();
+				},1000);
+			}
+		});
+	}
+</script>
+{/block}

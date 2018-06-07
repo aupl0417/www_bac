@@ -1,0 +1,48 @@
+{extend name="public:base" /}
+<!--导航-->
+
+<!--主体内容-->
+{block name="content"}
+	<div class="note note-info">
+		<div class="pull-right">
+			<div class="btn btn-info" onclick="clearCache(1)">清除缓存</div>
+		</div>
+		<h4 class="block">清除配置缓存</h4>
+		<p>清除配置缓存，启用新的配置参数</p>
+	</div>
+	
+	<div class="note note-danger">
+		<div class="pull-right">
+			<div class="btn btn-info" onclick="clearCache(1)">清除缓存</div>
+		</div>
+		<h4 class="block">清除所有缓存</h4>
+		<p>执行此操作将会清除掉所有缓存数据，可能会对各种业务流程有影响，请慎重操作！</p>
+	</div>
+	
+{/block}
+
+<!--脚本-->
+{block name="javascript"}
+<script>
+	function clearCache(t){
+		vmodal({
+			title:'清除缓存',
+			msg:'<h3 class="text-center">正的要清除缓存吗？</h3><div class="text-center">请确认不影响各业务流程后再执行此项操作！</div>',
+			footer:'show',
+			footerBtn:'<button type="button" class="btn btn-outline red btn-ok">确定</button>',
+			width:650,
+		},function(){
+			$('.ajax-modal .btn-ok').click(function(){
+				ajax_post({
+					url:'/clearcache/clear',
+					data:{type:t},
+					success:function(ret){
+						toast(ret);
+						$('.ajax-modal').modal('hide');
+					}
+				});
+			});
+		});		
+	}
+</script>
+{/block}

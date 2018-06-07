@@ -1,0 +1,54 @@
+{extend name="public:base" /}
+<!--导航-->
+{block name="nav"}{include file="password:nav" /}{/block}
+<!--主体内容-->
+{block name="content"}
+<form class="form-horizontal" id="form-edit" action="/{$Request.controller}/changePassword" onsubmit="return submitEdit()">
+			{:buildform(array(
+				'field'		=>array(
+					array(
+						'formtype'		=>'password',
+						'label'			=>'旧密码',
+						'name'			=>'old_password',
+						'attr'			=>'maxlength="20"',
+						'is_need'		=>1,
+					),		
+					array(
+						'formtype'		=>'password',
+						'label'			=>'新密码',
+						'name'			=>'password',
+						'attr'			=>'maxlength="20"',
+						'is_need'		=>1,
+					),		
+					array(
+						'formtype'		=>'password',
+						'label'			=>'确认密码',
+						'name'			=>'password2',
+						'attr'			=>'maxlength="20"',
+						'is_need'		=>1,
+					),		
+					array(
+						'formtype'		=>'button',
+						'btns'			=>[['提交','btn btn-danger btn-150px','submit']],
+					),					
+				),
+			))}
+</form>
+
+{/block}
+
+<!--脚本-->
+{block name="javascript"}
+<script>
+	function submitEdit(){
+		submitForm({
+			formid:'#form-edit',
+			success:function(ret){
+				toast(ret);
+				if(ret.code == 1) $('#form-edit')[0].rest();
+			}
+		});
+		return false;
+	}
+</script>
+{/block}

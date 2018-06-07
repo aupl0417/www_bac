@@ -1,0 +1,162 @@
+{extend name="common:base" /}
+{block name="title"}<title>网站开发_电商平台开发_网站程序开发公司-零壹聚</title>{/block}
+{block name="keywords"}<meta name="keywords" content="网站开发,电商平台开发,网站程序开发公司,网站开发公司">{/block}
+{block name="description"}<meta name="description" content="零壹聚致力于于网站建设,商城网站建设,企业网站建设,手机网站建设,微网站,微商城等企业网站开发服务，拥有丰富的网站建设经验,凭着过硬和实力和服务赢得了广大客户的一致好评。">{/block}
+
+{block name='content'}
+
+    <!--轮播开始-->
+    <div class="swiper-container banner-box">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+				<a href="{$data.0.url}"><img src="{$data.0.images}" alt="{$data.0.sub_title}"></a>
+            </div>
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+
+    </div>
+    <!--轮播结束-->
+
+	{foreach name="data.child" item="vo" key="k"}
+    <!--模块一开始-->
+	{eq name='k' value='0'}
+    <div class="shop-one-bg over">
+        <div class="w1200">
+            <div class="fs20 c-666 text-center pb80 ">
+                {$data.0.content}
+            </div>
+            <div class="row">
+                <div class="col-xs-4 text-left">
+                    <h2 class="mb40 c-666 fs26 pt25">{$vo.category_name}
+                    </h2>
+                    <p class="line30 fs14 c-666 mb40">
+                        {$vo.content}
+                    </p>
+                </div>
+                <div class="col-xs-8 text-right re">
+
+                    <div class=" wow bounceInRight bg-yellow animated" data-wow-duration="3s"><img src="{$vo.images}" alt="" width="80%" style="margin-top: 36px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--模块一结束-->
+	{/eq}
+
+	{eq name='k' value='1'}
+    <!--模块二开始-->
+    <div class="shop-two-bg over">
+        <div class="w1200">
+            <div class="mb20" data-wow-duration="1s">
+                <div class="col-xs-5 text-left  wow slideInLeft " >
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="__STATIC__/index/images/trj-icon-sm.png" alt="">
+
+                        </div>
+                        <div class="media-body">
+                            <h2 class="c-000">{$vo.category_name}</h2>
+                        </div>
+                    </div>
+                    <h4 class="c-000 mb20 mt20 ptb10">{$vo.sub_title} </h4>
+					{foreach name="vo.child" item="vol"}
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="{$vol.images}" alt="" width="110">
+
+                        </div>
+                        <div class="media-body " style="width: 178px;">
+                            <div class="pl15">
+                                <a href="https://itunes.apple.com/us/app/id1225113526?l=zh&ls=1&mt=8" class="btn btn-lg my-btn-blues btn-block mb10 text-left shop-btn-down " target="_blank"><i class="fa fa-apple mr5 fs24"></i>App Store</a>
+                                <a href="http://down.dttx.com/trj.apk" class="btn btn-lg my-btn-tran-border-blue btn-block mb10 text-left shop-btn-down" ><i class="fa fa-android mr5 fs24"></i>Android </a>
+                            </div>
+
+                        </div>
+                    </div>
+					{/foreach}
+                </div>
+
+                 <div class="col-xs-4 text-right re wow slideInRight">
+                     <div class="media-left">
+                            <img src="{$vo.images}">
+                     </div>
+                 </div>
+
+            </div>
+        </div>
+    </div>
+    <!--模块二结束-->
+
+	{/eq}
+
+	{eq name='k' value='2'}
+    <!--模块三开始-->
+    <div class="shop-three-bg">
+        <div class="w1200">
+            <div class="row">
+                <div class="col-xs-7">
+                     <div class="media-left top_100  wow slideInLeft ">
+                            <img src="{$vo.images}">
+                     </div>
+
+                </div>
+                <div class="col-xs-5">
+                    <div class="plr10 wow slideInRight">
+                        <div class="pt25" data-wow-duration="1s">
+
+                           
+                        <div class="media ">
+                            <div class="media-left">
+                                <img src="__STATIC__/index/images/ld-icon-sm.png" alt="">
+
+                            </div>
+                            <div class="media-body">
+                                <h2 class="c-000">{$vo.category_name}</h2>
+                            </div>
+                        </div>
+                        <h4 class="c-000 mb20 mt20 ptb10">{$vo.sub_title}</h4>
+						{foreach name="vo.child" item="vol"}
+                        <div class="media pb80">
+                            <div class="media-left">
+                                <img src="{$vol.images}" alt="" width="110">
+                            </div>
+                            <div class="media-body " style="width: 178px;">
+                                <div class="pl15">
+                                    <a href="#download-modal-mac" class="btn btn-lg my-btn-blues btn-block mb10 text-left shop-btn-down" data-toggle="modal"><i class="fa fa-apple mr5 fs24"></i>App Store</a>
+                                    <a href="#download-modal-mac" class="btn btn-lg my-btn-tran-border-blue btn-block mb10 text-left shop-btn-down" data-toggle="modal"><i class="fa fa-android mr5 fs24"></i>Android </a>
+                                </div>
+
+                            </div>
+                        </div>
+						{/foreach}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--模块三结束-->
+	{/eq}
+	{/foreach}
+
+{/block}
+
+{block name='script'}
+
+<script src="__STATIC__/index/js/wow.min.js"></script>
+<script>
+    setTimeout(function () {
+        var wow = new WOW({
+            boxClass: 'wow',
+            animateClass: 'animated',
+            offset: 0,
+            mobile: true,
+            live: true
+        });
+        wow.init();
+    },200)
+    ///动画效果
+</script>
+
+{/block}

@@ -1,0 +1,169 @@
+<form class="form-horizontal" id="form-add" onsubmit="return sform()">
+	<ul class="nav nav-tabs">
+		<li class="active">
+			<a href="#tab_1" data-toggle="tab" aria-expanded="true"> 基本设置 </a>
+		</li>
+		<li class="">
+			<a href="#tab_2" data-toggle="tab" aria-expanded="false"> 数据信息 </a>
+		</li>
+		<li class="">
+			<a href="#tab_4" data-toggle="tab" aria-expanded="false"> 其它设置 </a>
+		</li>
+	</ul>
+	
+	<div class="tab-content">
+		<div class="tab-pane fade active in" id="tab_1">
+		{:buildform(array(
+			'field'		=>array(
+				array(
+					'formtype'		=>'text',
+					'label'			=>'字段标签',
+					'name'			=>'label',
+					'is_need'		=>true,
+				),
+				array(
+					'formtype'		=>'text',
+					'label'			=>'字段名',
+					'name'			=>'name',
+					'is_need'		=>true,
+				),
+				array(
+					'formtype'		=>'select',
+					'label'			=>'表单类型',
+					'name'			=>'formtype',
+					'is_need'		=>true,
+					'data'			=>db('formtpl_type')->cache(true)->where(['status' => 1])->field('formtype,type_name')->select(),
+					'field'			=>['formtype','type_name'],
+				),				
+				array(
+					'formtype'		=>'text',
+					'label'			=>'默认值',
+					'name'			=>'default',
+				),
+				array(
+					'formtype'		=>'radio',
+					'label'			=>'状态',
+					'name'			=>'status',
+					'data'			=>[[1,'启用'],[0,'停用']],
+					'field'			=>[0,1],
+					'is_need'		=>true,
+					'value'			=>1,
+				),				
+				array(
+					'formtype'		=>'radio',
+					'label'			=>'匹配类型',
+					'name'			=>'search_type',
+					'data'			=>[['eq','eq'],['neq','neq'],['in','in'],['not in','not in'],['like','like'],['not like','not like']],
+					'field'			=>[0,1],
+					'is_need'		=>true,
+					'value'			=>'eq',
+				),					
+				array(
+					'formtype'		=>'hidden',
+					'name'			=>'formtpl_id',
+					'value'			=>request()->param('id'),
+				),
+				array(
+					'formtype'		=>'hidden',
+					'name'			=>'tables',
+					'value'			=>request()->param('tables'),
+				),
+			),
+		))}	
+		</div>
+		<div class="tab-pane fade" id="tab_2">
+		{:buildform(array(
+			'field'		=>array(
+				array(
+					'formtype'		=>'textarea',
+					'label'			=>'选项数据',
+					'name'			=>'options',
+					'tips'			=>'单项选择、下拉选择等表单的数据选项，数组格式，可以是函数处理后的结果返回',
+					'attr'			=>'rows="5"',
+				),
+				array(
+					'formtype'		=>'textarea',
+					'label'			=>'搜索前执行',
+					'name'			=>'before_function',
+					'tips'			=>'搜索前前进行数据处理，数组格式，可以是函数处理后的结果返回',
+					'attr'			=>'rows="5"',
+				),
+
+			),
+		))}			
+		</div>
+
+		<div class="tab-pane fade" id="tab_4">
+		{:buildform(array(
+			'field'		=>array(
+				array(
+					'formtype'		=>'textarea',
+					'label'			=>'提示信息',
+					'name'			=>'tips',
+				),
+				array(
+					'formtype'		=>'text',
+					'label'			=>'placeholder提示',
+					'name'			=>'placeholder',
+				),
+				array(
+					'formtype'		=>'text',
+					'label'			=>'Class',
+					'name'			=>'class',
+				),
+				array(
+					'formtype'		=>'text',
+					'label'			=>'Style',
+					'name'			=>'style',
+				),
+				array(
+					'formtype'		=>'text',
+					'label'			=>'其它属性',
+					'name'			=>'attr',
+				),
+				array(
+					'formtype'		=>'text',
+					'label'			=>'左边小图标',
+					'name'			=>'prev_addon',
+				),
+				array(
+					'formtype'		=>'text',
+					'label'			=>'右边小图标',
+					'name'			=>'next_addon',
+				),
+				array(
+					'formtype'		=>'text',
+					'label'			=>'左边按钮',
+					'name'			=>'prev_btn',
+				),
+				array(
+					'formtype'		=>'text',
+					'label'			=>'左边按钮',
+					'name'			=>'next_btn',
+				),
+
+			),
+		))}				
+		</div>
+	</div>	
+	
+	
+	<div class="text-center m20">
+		<button type="submit" class="btn btn-danger btn-150px">提交</button>
+	</div>
+</form>
+<script>
+	//$('#form-add tbody').dragsort({dragSelector: 'td'});
+	function sform(){
+		ajax_post({
+			url:'/formtpl/addSearchFieldSave',
+			data:getFormJson('#form-add'),
+			success:function(ret){
+				if(ret.code == 1){
+					location.reload();
+				}else toast(ret);
+			}
+		});
+		return false;
+	}
+</script>

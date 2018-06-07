@@ -1,0 +1,42 @@
+<form class="form-horizontal" id="form-action" action="/Controller/setAction" onsubmit="return setAction()">
+	<table class="table table-bordered valign-middle">
+		<thead>
+			<th width="30%">方法</th>
+			<th>操作类型</th>
+		</thead>
+		<tbody>
+		{volist name="action" id="vo"}
+			<tr>
+				<td><label class="mt-checkbox mt-checkbox-outline mr20">
+						<input type="checkbox" onclick="selectAll({tag:'#item-{$i}'})"> {$key}
+						<span></span>
+					</label> </td>
+				<td id="item-{$i}">
+					<label class="mt-checkbox mt-checkbox-outline mr20">
+						<input type="checkbox" name="{$key}[]" value="C" {:in_array('C',$action[$key])?'checked':''}> 创建(C)
+						<span></span>
+					</label>		
+					<label class="mt-checkbox mt-checkbox-outline mr20">
+						<input type="checkbox" name="{$key}[]" value="U" {:in_array('U',$action[$key])?'checked':''}> 修改(U)
+						<span></span>
+					</label>		
+					<label class="mt-checkbox mt-checkbox-outline mr20">
+						<input type="checkbox" name="{$key}[]" value="R" {:in_array('R',$action[$key])?'checked':''}> 读取(R)
+						<span></span>
+					</label>		
+					<label class="mt-checkbox mt-checkbox-outline">
+						<input type="checkbox" name="{$key}[]" value="D" {:in_array('D',$action[$key])?'checked':''}> 删除(D)
+						<span></span>
+					</label>		
+					
+				</td>
+			</tr>
+		{/volist}
+		</tbody>
+	</table>
+	<input type="hidden" name="id" value="{$Request.param.id}">
+	<div class="text-center mt20">
+		<button type="submit" class="btn btn-danger btn-150px"><i class="fa fa-check"></i> 提交</button>
+	</div>
+
+</form>

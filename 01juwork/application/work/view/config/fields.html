@@ -1,0 +1,25 @@
+<form class="form-horizontal" id="form-add-{$Request.param.group_id}" action="/{$Request.controller}/save" onsubmit="return sendForm($(this))">
+{notempty name="list"}
+	{:buildform(array(
+			'field'		=>$list,
+	),$config)}	
+	
+	{:buildform(array(
+		'field'		=>array(
+			array(
+				'formtype'		=>'hidden',
+				'name'			=>'group_id',
+				'value'			=>request()->param('group_id'),
+			),
+			array(
+				'formtype'		=>'button',
+				'btns'			=>[['提交','btn btn-danger btn-150px','submit']],
+			),
+		),
+	))}
+{/notempty}	
+</form>
+
+<script>
+	image_zoom();
+</script>

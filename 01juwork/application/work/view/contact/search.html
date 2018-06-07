@@ -1,0 +1,28 @@
+{notempty name="search_fields.default"}
+<form method="get">
+	<table class="table no-border">
+		<tr>
+			<td>
+				<table class="table no-border table-hover valign-middle md0">
+					<tbody>
+						<tr>
+							{volist name="search_fields.default" id="vo" mod="$formtpl['search_col']"}
+							<td>
+							{:form_item($vo,request()->get())}				
+							</td>
+							{if condition="$mod eq $formtpl['search_col']-1"}</tr><tr>{/if}
+							{/volist}
+						</tr>
+					</tbody>
+				</table>			
+			</td>
+			<td width="100">
+				<button type="submit" class="btn blue btn-outline btn-block" style="margin-top: 9px;"><i class="fa fa-search"></i> 搜索</button>
+			</td>
+		</tr>
+	</table>
+	{volist name="search_fields.hidden" id="vo"}
+	{:form_item($vo)}
+	{/volist}	
+</form>
+{/notempty}

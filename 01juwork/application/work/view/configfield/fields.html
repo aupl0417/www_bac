@@ -1,0 +1,51 @@
+<div class="btn red btn-outline md20" onclick="addField({$Request.param.group_id})"><i class="icon-plus"></i> 新增参数</div>
+
+<table class="table table-bordered table-hover valign-middle">
+	<thead>
+		<th width="8%" class="text-center">ID</th>
+		<th width="8%" class="text-center">状态</th>
+		<th width="15%">标题</th>
+		<th width="10%">字段名</th>
+		<th>表单类型</th>
+		<th width="5%" class="text-center">必填</th>
+		<th width="5%" class="text-center">验证</th>
+		<th width="12%" class="text-center">时间</th>
+		<th width="200" class="text-center">操作</th>
+	</thead>
+	<tbody>
+		{volist name="list" id="vo"}
+		<tr data-id="{$vo.id}">
+			<td class="text-center">{$vo.id}</td>
+			<td class="text-center">{:status($vo['status'])}</td>
+			<td>{$vo.label}</td>
+			<td>{$vo.name}</td>
+			<td>{$vo.formtype}</td>
+			<td class="text-center">{:status($vo['is_need'],[['-',''],['是','text-success']])}</td>
+			<td class="text-center">{:status($vo['is_verify'],[['-',''],['是','text-success']])}</td>
+			<td class="text-center">{$vo.atime}</td>
+			<td class="text-center">
+				<div class="btn blue btn-sm btn-outline" onclick="vmodal({title:'字段设置',url:'/configfield/edit/id/{$vo.id}',width:1000})"><i class="icon-settings"></i> 设置</div>
+				<div class="btn red btn-sm btn-outline" onclick="deleteField({$vo.id})"><i class="icon-trash"></i> 删除</div>
+			</td>
+		</tr>
+		{/volist}
+	</tbody>
+
+</table>
+
+<script>
+	$('.group-field table').each(function(){
+		var obj = $(this);
+		$(this).find('tbody').sortable({
+			stop: function(event, ui) {
+				var id = obj.find('tr').map(function() { return $(this).attr("data-id"); }).get();
+				console.log(id);
+				ajax_post({
+					url:'/configfield/fieldSort',
+					data:{id:id}
+				});
+			}	
+		});				
+		
+	});	
+</script>

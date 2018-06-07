@@ -1,0 +1,56 @@
+<form class="form-horizontal" action="/formtpl/addGroupSave" id="form-add" onsubmit="return sform()">
+	{:buildform(array(
+		'field'		=>array(
+			array(
+				'formtype'		=>'text',
+				'label'			=>'分组名称',
+				'name'			=>'group_name',
+				'is_need'		=>true,
+			),
+			array(
+				'formtype'		=>'radio',
+				'label'			=>'状态',
+				'name'			=>'status',
+				'data'			=> [[1,'启用'],[0,'停用']],
+				'field'			=> [0,1],
+				'value'			=> 1,
+				'is_need'		=> 1,
+			),			
+			array(
+				'formtype'		=>'textarea',
+				'label'			=>'分组介绍',
+				'name'			=>'remark',
+			),
+			array(
+				'formtype'		=>'hidden',
+				'name'			=>'formtpl_id',
+				'value'			=>request()->param('formtpl_id'),
+			),
+			array(
+				'formtype'		=>'hidden',
+				'name'			=>'tables',
+				'value'			=>request()->param('tables'),
+			),			
+			array(
+				'formtype'		=>'button',
+				'btns'			=>[['提交','btn btn-danger btn-150px','submit']],
+			),
+		),
+	))}	
+</form>
+<script>
+	function sform(){
+		var data = getFormJson('#form-add');
+		//console.log(data);
+		ajax_post({
+			url:'/formtpl/addGroupSave',
+			data:data,
+			success:function(ret){
+				if(ret.code == 1){
+					location.reload();
+				}else toast(ret);
+			}
+		});
+		return false;
+	}
+</script>

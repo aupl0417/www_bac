@@ -1,0 +1,78 @@
+<div class="note note-info">
+	<h4 class="block">提示</h4>
+	<p> 选择要生成表单的字段，提交后默认生成将会是input文本框，生成后再根据需求进行调整。鼠标拖动可调整顺序</p>
+</div>
+<form class="form-horizontal" action="/formtpl/createFormSave" id="form-add" onsubmit="return sform()">
+	<table class="table table-bordered table-hover valign-middle">
+		<thead>
+			<th class="text-center">选择</th>
+			<th>注释</th>
+			<th>字段名</th>
+			<th>类型</th>
+		</thead>
+		<tbody>
+			{volist name="fields" id="vo"}
+			<tr>
+				<td class="text-center">
+					{notin name="vo.name" value="$use"}
+					<label class="mt-checkbox mt-checkbox-outline">
+						<input type="checkbox" id="field[]" name="field[]" value="{$vo.name}">
+						<span></span>
+					</label>
+					{else/}
+					<i class="fa fa-check text-success"></i>
+					{/notin}
+				</td>
+				<td>{$vo.comment}</td>
+				<td>{$vo.name}</td>
+				<td>{$vo.type}</td>
+			</tr>
+			{/volist}
+		</tbody>
+		
+	</table>
+	
+	{:buildform(array(
+		'field'		=>array(
+			array(
+				'formtype'		=>'select',
+				'label'			=>'字段分组',
+				'name'			=>'group_id',
+				'data'			=> db('formtpl_group')->where(['formtpl_id' => request()->param('id')])->field('id,group_name')->select(),
+				'field'			=>['id','group_name'],
+			),
+			array(
+				'formtype'		=>'button',
+				'btns'			=>[['提交','btn btn-danger btn-150px','submit']],
+			),
+		),
+	))}		
+</form>
+<script>
+	//$('#form-add tbody').dragsort({dragSelector: 'td'});
+	function sform(){
+		var data = getFormJson('#form-add');
+		
+		if($('#form-add input[type="checkbox"]:checked').size() == 0){
+			toast({code:0,msg:'请至少选择一个字段！'});
+			return false;
+		}
+		
+		if(data.group_id == ''){
+			toast({code:0,msg:'请选择字段分组！'});
+			return false;
+		}
+		
+		
+		ajax_post({
+			url:'/formtpl/fromTableFieldSave',
+			data:data,
+			success:function(ret){
+				if(ret.code == 1){
+					location.reload();
+				}else toast(ret);
+			}
+		});
+		return false;
+	}
+</script>

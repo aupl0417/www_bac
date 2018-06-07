@@ -1,0 +1,70 @@
+<div class="note note-info">
+	<h4 class="block">提示</h4>
+	<p> 选择要生成表单的字段，提交后默认生成将会是input文本框，生成后再根据需求进行调整。鼠标拖动可调整顺序</p>
+</div>
+<form class="form-horizontal" action="/formtpl/createFormSave" id="form-add" onsubmit="return sform()">
+	<table class="table table-bordered table-hover valign-middle">
+		<thead>
+			<th class="text-center">选择</th>
+			<th>注释</th>
+			<th>字段名</th>
+			<th>类型</th>
+		</thead>
+		<tbody>
+			{volist name="fields" id="vo"}
+			<tr>
+				<td class="text-center">
+					<label class="mt-checkbox mt-checkbox-outline">
+						<input type="checkbox" id="field[]" name="field[]" value="{$vo.name}" class="i-red-square" checked="checked">
+						<span></span>
+					</label>
+				</td>
+				<td>{$vo.comment}</td>
+				<td>{$vo.name}</td>
+				<td>{$vo.type}</td>
+			</tr>
+			{/volist}
+		</tbody>
+		
+	</table>
+
+	{:buildform(array(
+		'field'		=>array(
+			array(
+				'formtype'		=>'text',
+				'label'			=>'表单模板名称',
+				'name'			=>'tpl_name',
+				'is_need'		=>true,
+			),
+			array(
+				'formtype'		=>'textarea',
+				'label'			=>'模板备注',
+				'name'			=>'remark',
+			),
+			array(
+				'formtype'		=>'hidden',
+				'name'			=>'table',
+				'value'			=>request()->param('table'),
+			),
+			array(
+				'formtype'		=>'button',
+				'btns'			=>[['提交','btn btn-danger btn-150px','submit']],
+			),
+		),
+	))}	
+</form>
+<script>
+	//$('#form-add tbody').dragsort({dragSelector: 'td'});
+	function sform(){
+		ajax_post({
+			url:'/formtpl/createFormSave',
+			data:getFormJson('#form-add'),
+			success:function(ret){
+				if(ret.code == 1){
+					location.href = '/formtpl/formEdit/id/' + ret.data.id;
+				}else toast(ret);
+			}
+		});
+		return false;
+	}
+</script>

@@ -1,0 +1,217 @@
+<form class="form-horizontal" id="form-add" onsubmit="return sform()">
+	<ul class="nav nav-tabs">
+		<li class="active">
+			<a href="#tab_1" data-toggle="tab" aria-expanded="true"> 基本设置 </a>
+		</li>
+		<li class="">
+			<a href="#tab_2" data-toggle="tab" aria-expanded="false"> 数据信息 </a>
+		</li>
+		<li class="">
+			<a href="#tab_3" data-toggle="tab" aria-expanded="false"> 数据验证 </a>
+		</li>
+		<li class="">
+			<a href="#tab_4" data-toggle="tab" aria-expanded="false"> 其它设置 </a>
+		</li>
+	</ul>
+	
+	<div class="tab-content">
+		<div class="tab-pane fade active in" id="tab_1">
+		{:buildform(array(
+			'field'		=>array(
+				array(
+					'formtype'		=>'text',
+					'label'			=>'字段标签',
+					'name'			=>'label',
+					'is_need'		=>true,
+				),
+				array(
+					'formtype'		=>'text',
+					'label'			=>'字段名',
+					'name'			=>'name',
+					'is_need'		=>true,
+				),
+				array(
+					'formtype'		=>'select',
+					'label'			=>'表单类型',
+					'name'			=>'formtype',
+					'is_need'		=>true,
+					'data'			=>db('formtpl_type')->cache(true)->where(['status' => 1])->field('formtype,type_name')->select(),
+					'field'			=>['formtype','type_name'],
+				),				
+				array(
+					'formtype'		=>'text',
+					'label'			=>'默认值',
+					'name'			=>'default',
+				),
+				array(
+					'formtype'		=>'radio',
+					'label'			=>'状态',
+					'name'			=>'status',
+					'data'			=>[[1,'启用'],[0,'停用']],
+					'field'			=>[0,1],
+					'is_need'		=>true,
+					'value'			=>1,
+				),				
+				array(
+					'formtype'		=>'hidden',
+					'name'			=>'group_id',
+				),
+				array(
+					'formtype'		=>'hidden',
+					'name'			=>'id',
+					'value'			=>request()->param('id'),
+				),
+			),
+		),$rs)}	
+		</div>
+		<div class="tab-pane fade" id="tab_2">
+		{:buildform(array(
+			'field'		=>array(
+				array(
+					'formtype'		=>'textarea',
+					'label'			=>'选项数据',
+					'name'			=>'options',
+					'tips'			=>'单项选择、下拉选择等表单的数据选项，数组格式，可以是函数处理后的结果返回',
+					'attr'			=>'rows="5"',
+				),
+				array(
+					'formtype'		=>'textarea',
+					'label'			=>'插入数据前执行',
+					'name'			=>'before_function',
+					'tips'			=>'插入数据前进行数据处理，数组格式，可以是函数处理后的结果返回',
+					'attr'			=>'rows="5"',
+				),
+				array(
+					'formtype'		=>'textarea',
+					'label'			=>'读取数据后执行',
+					'name'			=>'after_function',
+					'tips'			=>'读取数据后进行数据处理，数组格式，可以是函数处理后的结果返回',
+					'attr'			=>'rows="5"',
+				),
+
+			),
+		),$rs)}			
+		</div>
+		<div class="tab-pane fade" id="tab_3">
+		{:buildform(array(
+			'field'		=>array(	
+				array(
+					'formtype'		=>'radio',
+					'label'			=>'显示必填标记',
+					'name'			=>'is_need',
+					'data'			=>[[1,'是'],[0,'否']],
+					'field'			=>[0,1],
+					'value'			=>0,
+				),
+				array(
+					'formtype'		=>'radio',
+					'label'			=>'是否验证数据',
+					'name'			=>'is_verify',
+					'data'			=>[[1,'是'],[0,'否']],
+					'field'			=>[0,1],
+					'value'			=>0,
+				),
+				array(
+					'formtype'		=>'radio',
+					'label'			=>'验证场景',
+					'name'			=>'scene',
+					'data'			=>[[1,'都验证'],[2,'插入时验证'],[3,'修改时验证']],
+					'field'			=>[0,1],
+					'value'			=>1,
+				),	
+				array(
+					'formtype'		=>'textarea',
+					'label'			=>'验证规则',
+					'name'			=>'rule',
+					'tips'			=>'一行一条验证规则，TP的的验证规则，不熟悉请上TP官网学习',
+					'attr'			=>'rows="5"',
+				),
+				array(
+					'formtype'		=>'textarea',
+					'label'			=>'错误提示',
+					'name'			=>'msg',
+					'tips'			=>'对应上面的验证规则',
+					'attr'			=>'rows="5"',
+				),				
+			),
+		),$rs)}			
+		</div>
+		<div class="tab-pane fade" id="tab_4">
+		{:buildform(array(
+			'field'		=>array(
+				array(
+					'formtype'		=>'textarea',
+					'label'			=>'提示信息',
+					'name'			=>'tips',
+				),
+				array(
+					'formtype'		=>'text',
+					'label'			=>'placeholder提示',
+					'name'			=>'placeholder',
+				),
+				array(
+					'formtype'		=>'text',
+					'label'			=>'Class',
+					'name'			=>'class',
+				),
+				array(
+					'formtype'		=>'text',
+					'label'			=>'Style',
+					'name'			=>'style',
+				),
+				array(
+					'formtype'		=>'text',
+					'label'			=>'其它属性',
+					'name'			=>'attr',
+				),
+				array(
+					'formtype'		=>'text',
+					'label'			=>'左边小图标',
+					'name'			=>'prev_addon',
+				),
+				array(
+					'formtype'		=>'text',
+					'label'			=>'右边小图标',
+					'name'			=>'next_addon',
+				),
+				array(
+					'formtype'		=>'text',
+					'label'			=>'左边按钮',
+					'name'			=>'prev_btn',
+				),
+				array(
+					'formtype'		=>'text',
+					'label'			=>'左边按钮',
+					'name'			=>'next_btn',
+				),
+
+			),
+		),$rs)}				
+		</div>
+	</div>	
+	
+	
+	<div class="text-center m20">
+		<button type="submit" class="btn btn-danger btn-150px">提交</button>
+	</div>
+</form>
+<script>
+	//$('#form-add tbody').dragsort({dragSelector: 'td'});
+	function sform(){
+		ajax_post({
+			url:'/configfield/edit_save',
+			data:getFormJson('#form-add'),
+			success:function(ret){
+				toast(ret);
+				if(ret.code == 1){
+					var group_id = $('#group_id').val();
+					var obj = $('#'+group_id);
+					var url = obj.data('url');
+					obj.html('<div class="text-center"><img src="/images/loading.gif" alt="loading"></div>').load(url);
+					$('.ajax-modal').modal('hide');
+				} 
+			}
+		});
+		return false;
+	}
+</script>

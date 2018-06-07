@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>找不到页面-零壹聚</title>
+    <meta name="keywords" content="新闻资讯,零壹聚">
+    <meta name="description" content="零壹聚的新闻资讯涵盖了公司的相关新闻资讯以及行业的相关资讯，在这里你可以了解到很多相关的新闻资讯。">
+    <link rel="lyjicon" href="favicon.ico" type="images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/bootstrap/css/bootstrap.min.css">
+    <link href="__STATIC__/index/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="__STATIC__/index/bootstrap/css/fonts.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/css/style.css">
+</head>
+<body>
+
+    <!--导航开始-->
+    <div class="index-nav-class">
+        <div class="w1200">
+            <a href="/index/"><img src="__STATIC__/index/images/index-logo.jpg" alt=""></a>
+            <ul class="list-unstyled index-nav-ul pull-right">
+
+                <li class="active"><a href="/index/">首页</a></li>
+                <li class=""><a href="/app/">APP开发</a></li>
+                <li><a href="#download-modal-mac" data-toggle="modal">游戏开发</a></li>
+                <li><a href="/shop/">商城开发</a></li>
+                <li><a href="/case_app/">经典案例</a></li>
+                <li class=""><a href="/about/">关于我们</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+
+
+
+
+        <!--导航结束-->
+    <div class="bg_419">
+        <div class=" w1200 text-left">
+            <h2 class="c-white ptb40 mb0">新闻资讯</h2>
+        </div>
+    </div>
+    <!--内容开始-->
+    <div class="bg_f2f pt25">
+        <div class="w1200">
+            <div class="row">
+                <div class="col-xs-9 mb70">
+                    <div class="bg_white pd30 newsdata-box">
+						{foreach name="data.child" item="vo" key="k"}
+                        <div class="media pb25 solid-b-e5">
+                            <a href="/news_deta/{$vo.id}.html">
+                                <div class="media-left media-middle">
+                                    <img class="media-object" src="{$vo.images}" alt="...">
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading fs18 c-666">{$vo.name}</h4>
+                                    <div class="c-666 mb20 fs14 newsdata-li-content">{$vo.content}</div>
+                                    <div class="c-666">{$vo.atime}&nbsp;&nbsp;<i class="fa fa-eye mr5"></i>{$vo.hit}</div>
+                                </div>
+                            </a>
+                        </div>
+						{/foreach}
+                    </div>
+                </div>
+                <div class="col-xs-3 pl0">
+                    <div class="bg_white pd10">
+                        <div class="pd10">
+                            <div class="input-group input-news re pb25 solid-b-e5">
+                                <input type="text" class="form-control btn-block" placeholder="">
+                                <i class="fa fa-search"></i>
+                            </div>
+                            <h4 class="fs16 ">为您推荐</h4>
+                            <div class="solid-all-e5e mb20">
+								{foreach name="data.child" item="vo" key="k"}
+                                <div class="plr15 ptb10 solid-b-e5">
+                                    <a href="/news_deta/{$vo.id}/" class="c-666">
+                                    {$vo.name}
+                                    </a>
+                                </div>
+								{/foreach}
+                            </div>
+                            <div class="mb10"><a href="" class="c-666">所有文章</a></div>
+                            <div class="mb10"><a href="" class="c-blue">集团新闻</a></div>
+                            <div class="mb10"><a href="" class="c-666">业内新闻</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--内容结束-->
+
+    <!--模态框开始-->
+
+    <div class="modal fade" id="download-modal-mac" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel32">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>
+                        玩命开发中...
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default my-btn-gary" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--模态框开始-->
+
+    <!--页尾开始-->
+		<div class="footer-box">
+			<div class="container pd0">
+				<div class="row mg0" id="foot-cont">
+					{foreach name="bottom_menu" item="vo" key="k"}
+					{eq name='k' value='0'}
+						<div class="col-lz-2 col-md-4 pd0">
+							<div class=" fs14">
+								<div class="c-666 fs16 mb20"><strong>{$vo.name}</strong></div>
+								{foreach name="vo.child" item="vol"}
+									<img src="{$vol.images}" alt="" width="100">
+								{/foreach}
+							</div>
+						</div>
+					{/eq}
+					{eq name='k' value='1'}
+					<div class="col-lz-2 col-md-4 pd0">
+						<div class=" fs14">
+							<div class="c-666 fs16 mb20"><strong>{$vo.name}</strong></div>
+							{foreach name="vo.child" item="vol"}
+								<div class="mb20"><a href="{$vol.url}" class="c-888" target="_blank">{$vol.name}</a></div>
+							{/foreach}
+						</div>
+					</div>
+					{/eq}
+					{eq name='k' value='2'}
+					<div class="col-lz-2 col-md-4 pd0">
+						<div class=" fs14">
+							<div class="c-666 fs16 mb20"><strong>{$vo.name}</strong></div>
+							{foreach name="vo.child" item="vol"}
+								<div class="mb20"><a href="{$vol.url}" class="c-888" target="_blank">{$vol.name}</a></div>
+							{/foreach}
+						</div>
+					</div>
+					{/eq}
+					{eq name='k' value='3'}
+					<div class="col-lz-2 col-md-4 pd0">
+						<div class=" fs14">
+							<div class="c-666 fs16 mb20"><strong>{$vo.name}</strong></div>
+							{foreach name="vo.child" item="vol"}
+								<div class="mb20"><a href="{$vol.url}" class="c-888" target="_blank">{$vol.name}</a></div>
+							{/foreach}
+						</div>
+					</div>
+					{/eq}
+					{/foreach}
+				</div>
+			</div>
+		</div>
+
+    <!--页尾结束-->
+
+
+
+    <!--友情链接开始-->
+    <div class="pt25 pb25 c-888 fs14 bg_f2f">
+        <div class="w1200 line30">
+            ©2017 广州零壹聚网络科技有限公司 .ALL Right Reservd. | 粤ICP备17092225号<img src="__STATIC__/index/images/foot-ba-icon.png" alt="" style="margin-right: 5px;margin-left: 5px;">粤公网安备 44010402001045号
+        </div>
+
+    </div>
+    <!--友情链接结束-->
+</body>
+<script src="__STATIC__/index/js/jquery.min.js"></script>
+<script src="__STATIC__/index/bootstrap/js/bootstrap.min.js"></script>
+<script src="__STATIC__/index/js/wow.min.js"></script>
+<script type="text/javascript" src="__STATIC__/index/js/app.js"></script>
+<script type="text/javascript" src="__STATIC__/index/js/template7.min.js"></script>
+
+</html>

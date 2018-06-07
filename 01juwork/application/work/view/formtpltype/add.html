@@ -1,0 +1,62 @@
+{extend name="public:base" /}
+<!--导航-->
+{block name="nav"}{include file="formtpltype:nav" title="新增" /}{/block}
+
+<!--主体内容-->
+{block name="content"}
+<form class="form-horizontal" id="form-add" action="/{$Request.controller}/add_save" onsubmit="return sendForm()">
+	<ul class="nav nav-tabs">
+		{volist name="group" id="gl"}
+		<li class="{$i==1?'active':''}">
+			<a href="#tabs_{$i}" data-toggle="tab" aria-expanded="true"> {$gl.group_name} </a>
+		</li>
+		{/volist}
+		
+	</ul>
+	<div class="tab-content">
+		{volist name="group" id="gl"}
+		<div class="tab-pane fade in {$i==1?'active':''}" id="tabs_{$i}">
+		{notempty name="gl.remark"}
+			<div class="note note-info">
+				<p>提示：{$gl.remark}</p>
+			</div>			
+		{/notempty}
+		{:buildform(array(
+			'field'		=>$gl.fields,
+		))}			
+		</div><!--/end pane-->
+		{/volist}
+	</div>
+	
+	{:buildform(array(
+		'field'		=>array(
+			array(
+				'formtype'		=>'button',
+				'btns'			=>[['提交','btn btn-danger btn-150px','submit']],
+			),
+		),
+	))}
+</form>
+{/block}
+
+<!--脚本-->
+{block name="javascript"}
+<script>
+	function sendForm(){
+		submitForm({
+			formid:'#form-add',
+			success:function(ret){				
+				if(ret.code == 1){
+					vmodal({
+						title:'操作提示',
+						msg:'<h3 class="text-center md10">操作成功！</h3><div class="text-center"><a href="/{$Request.controller}/add" class="btn blue btn-outline btn-100px mr10">继续添加</a> <a href="/{$Request.controller}/index" class="btn default btn-outline btn-100px">返回</a></div>',
+						width:'650'
+					});
+				}else toast(ret);
+			}
+		});
+		
+		return false;
+	}
+</script>
+{/block}

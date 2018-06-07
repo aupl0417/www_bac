@@ -1,0 +1,60 @@
+<div class="row">
+	<div class="col-xs-offset-1 col-xs-10">
+		<div id="tree" class="m20"></div>
+		{:buildform(array(
+			'field'		=>array(
+				array(
+					'formtype'		=>'hidden',
+					'name'			=>'group_id',
+					'value'			=>request()->param('id'),
+				),
+				array(
+					'formtype'		=>'button',
+					'btns'			=>[['提交','btn btn-danger btn-150px','button','onclick="selectMenu()"']],
+				),
+			),
+		))}			
+	</div>
+</div>
+
+<script>
+        $('#tree').jstree({
+            'plugins': ["wholerow", "checkbox", "types"],
+            'core': {
+                "themes" : {
+                    "responsive": false
+                },    
+                'data': {:json_encode($tree)}
+            },
+            "types" : {
+                "default" : {
+                    "icon" : "fa fa-folder icon-state-warning icon-lg"
+                },
+                "file" : {
+                    "icon" : "fa fa-file icon-state-warning icon-lg"
+                }
+            }
+        });	
+        
+        function selectMenu(){
+        	//alert('kk');
+        	var ids = new Array();
+        	$('#tree .jstree-clicked,#tree .jstree-undetermined').each(function(){
+        		var id =$(this).closest('a').find('span.hide').data('id');
+        		ids.push(id);
+        	});
+        	
+        	if(ids.length == 0){
+        		toast({msg:'请至少选择一项'});
+        		return;
+        	}
+        	
+        	ajax_post({
+        		url:'/Admingroup/setMenu',
+        		data:{ids:ids.join(','),group_id:$('#group_id').val()},
+        		success:function(ret){
+        			toast(ret);
+        		}
+        	});
+        }
+</script>

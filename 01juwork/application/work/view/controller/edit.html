@@ -1,0 +1,66 @@
+{extend name="public:base" /}
+<!--导航-->
+{block name="nav"}{include file="controller:nav" title="修改" /}{/block}
+
+<!--主体内容-->
+{block name="content"}
+<form class="form-horizontal" id="form-edit" action="/{$Request.controller}/edit_save" onsubmit="return sendForm()">
+	<ul class="nav nav-tabs">
+		{volist name="group" id="gl"}
+		<li class="{$i==1?'active':''}">
+			<a href="#tabs_{$i}" data-toggle="tab" aria-expanded="true"> {$gl.group_name} </a>
+		</li>
+		{/volist}
+		
+	</ul>
+	<div class="tab-content">
+		{volist name="group" id="gl"}
+		<div class="tab-pane fade in {$i==1?'active':''}" id="tabs_{$i}">
+		{notempty name="gl.remark"}
+			<div class="note note-info">
+				<p>提示：{$gl.remark}</p>
+			</div>			
+		{/notempty}			
+		{:buildform(array(
+			'field'		=>$gl.fields,
+		),$res)}			
+		</div><!--/end pane-->
+		{/volist}
+	</div>
+	
+	{:buildform(array(
+		'field'		=>array(
+			array(
+				'formtype'		=>'hidden',
+				'name'			=>'id',
+				'value'			=>$res['id'],
+			),
+			array(
+				'formtype'		=>'button',
+				'btns'			=>[['提交','btn btn-danger btn-150px','submit']],
+			),
+		),
+	))}
+</form>
+{/block}
+
+<!--脚本-->
+{block name="javascript"}
+<script>
+	function sendForm(){
+		submitForm({
+			formid:'#form-edit',
+			success:function(ret){
+				toast(ret);
+				if(ret.code == 1){
+					setTimeout(function(){
+						history.back();
+					},1000);
+				}
+			}
+		});
+		
+		return false;
+	}
+</script>
+{/block}
