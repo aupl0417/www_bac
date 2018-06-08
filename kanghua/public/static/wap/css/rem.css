@@ -1,0 +1,49 @@
+.list li	{list-style-type:none}
+.amg img 	{max-width:100%;max-height:100%;vertical-align:middle;border:none;}
+.ad a:hover {text-decoration:underline;}
+.ad a 		{text-decoration:none;}
+.amg 		{text-align:center;vertical-align:middle;display:table-cell;background:transparent}
+.hundred_one{width: 1%}
+.clear 		{clear:both}
+.over		{overflow:hidden}
+.strong		{font-weight: bold}
+.small_xs	{font-weight:normal  !important;}
+.bor_img	{border:1px solid #ccc !important;}
+.fs30       {font-size: 30px;}
+.text-center{text-align:center;}
+.text-left{text-align:left;}
+.text-right{text-align:right;}
+
+.c_blue{color:#2e92f4} /*字体主色蓝*/
+.c_red{color:#ff4141;} /*辅助色红*/
+.c_fff{color:#fff}
+.c_000{color:#000}
+.c_333{color:#333}
+.c_666{color:#666}
+.c_999{color:#999}
+.c_ccc{color:#ccc}
+
+.bg_blue{background-color:#2e92f4} /*背景主色蓝*/
+.bg_fff{background-color:#fff}
+.bg_000{background-color:#000}
+.bg_333{background-color:#333}
+.bg_666{background-color:#666}
+.bg_999{background-color:#999}
+.bg_gray{background-color:#f5f7fa;} /*辅助色 背景色*/
+
+.solid_all{border:1px solid #f5f7fa}
+.solid_t{border-top:1px solid #f5f7fa}
+.solid_r{border-right:1px solid #f5f7fa}
+.solid_b{border-bottom:1px solid #f5f7fa}
+.solid_l{border-left:1px solid #f5f7fa}
+.solid_last .solid_b:last-child{border-bottom:none}
+.bor_r0{border-radius:0;}
+.bor_no{border:none !important;box-shadow:none;}
+
+
+.rfs10{font-size:.2415rem}.rfs12{font-size:.2898rem}.rfs14{font-size:.3381rem}.rfs16{font-size:.3864rem}.rfs18{font-size:.4347rem}.rfs20{font-size:.483rem}.rfs22{font-size:.5314rem}.rfs24{font-size:.5797rem}.rfs26{font-size:.6280rem}.rfs28{font-size:.6763rem}.rfs30{font-size:.7246rem}
+.rline14{line-height:.3381rem}.rline16{line-height:.3864rem}.rline18{line-height:.4347rem}.rline20{line-height:.483rem}.rline22{line-height:.5134rem}.rline24{line-height:.5797rem}.rline26{line-height:.628rem}.rline28{line-height:.6763rem}.rline30{line-height:.7246rem}
+.rpd0{padding:0}.rpd5{padding:.1207rem}.rpd10{padding:.2415rem}.rpd15{padding:.3623rem}.rpd20{padding:.483rem}.rpd25{padding:.6038rem}.rpd30{padding:.7246rem}.rpd35{padding:.8454rem}.rpd40{padding:.9661rem}.rpt0{padding-top:0}.rpt5{padding-top:.1207rem}.rpt10{padding-top:.2415rem}.rpt15{padding-top:.3623rem}.rpt20{padding-top:.483rem}.rpt25{padding-top:.6038rem}.rpt30{padding-top:.7246rem}.rpt35{padding-top:.8454rem}.rpt40{padding-top:.9661rem}.rpr0{padding-right:0}.rpr5{padding-right:.1207rem}.rpr10{padding-right:.2415rem}.rpr15{padding-right:.3623rem}.rpr20{padding-right:.483rem}.rpr25{padding-right:.6038rem}.rpr30{padding-right:.7246rem}.rpr35{padding-right:.8454rem}.rpr40{padding-right:.9661rem}.rpb0{padding-bottom:0}.rpb5{padding-bottom:.1207rem}.rpb10{padding-bottom:.2415rem}.rpb15{padding-bottom:.3623rem}.rpb20{padding-bottom:.483rem}.rpb25{padding-bottom:.6038rem}.rpb30{padding-bottom:.7246rem}.rpb35{padding-bottom:.8454rem}.rpb40{padding-bottom:.9661rem}.rpl0{padding-left:0}.rpl5{padding-left:.1207rem}.rpl10{padding-left:.2415rem}.rpl15{padding-left:.3623rem}.rpl20{padding-left:.483rem}.rpl25{padding-left:.6038rem}.rpl30{padding-left:.7246rem}.rpl35{padding-left:.8454rem}.rpl40{padding-left:.9661rem}
+.rmg0{margin:0}.rmg5{margin:.1207rem}.rmg10{margin:.2415rem}.rmg15{margin:.3623rem}.rmg20{margin:.483rem}.rmg25{margin:.6038rem}.rmg30{margin:.7246rem}.rmg35{margin:.8454rem}.rmg40{margin:.9661rem}.rmt-10{margin-top:-0.2415rem}.rmt-5{margin-top:-0.1207rem}.rmt0{margin-top:0}.rmt5{margin-top:.1207rem}.rmt10{margin-top:.2415rem}.rmt15{margin-top:.3623rem}.rmt20{margin-top:.483rem}.rmt25{margin-top:.6038rem}.rmt30{margin-top:.7246rem}.rmt35{margin-top:.8454rem}.rmt40{margin-top:.9661rem}.rmr0{margin-right:0}.rmr5{margin-right:.1207rem}.rmr10{margin-right:.2415rem}.rmr15{margin-right:.3623rem}.rmr20{margin-right:.483rem}.rmr25{margin-right:.6038rem}.rmr30{margin-right:.7246rem}.rmr35{margin-right:.8454rem}.rmr40{margin-right:.9661rem}.rmb0{margin-bottom:0}.rmb5{margin-bottom:.1207rem}.rmb10{margin-bottom:.2415rem}.rmb15{margin-bottom:.3623rem}.rmb20{margin-bottom:.483rem}.rmb25{margin-bottom:.6038rem}.rmb30{margin-bottom:.7246rem}.rmb35{margin-bottom:.8454rem}.rmb40{margin-bottom:.9661rem}.rml0{margin-left:0}.rml5{margin-left:.1207rem}.rml10{margin-left:.2415rem}.rml15{margin-left:.3623rem}.rml20{margin-left:.483rem}.rml25{margin-left:.6038rem}.rml30{margin-left:.7246rem}.rml35{margin-left:.8454rem}.rml40{margin-left:.9661rem}.rpd130{padding:.3623rem 0}
+
+

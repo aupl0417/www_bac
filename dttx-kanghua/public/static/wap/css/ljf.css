@@ -1,0 +1,61 @@
+body{
+	font-family:"微软雅黑";
+	line-height:normal;
+	background:white;
+	max-width:750px;
+	margin:0 auto;
+	color:#666
+	/*font:12px;*/
+}
+
+/*康华个人中心开始*/
+.user-icon-box{width:1.208rem;height:1.208rem;border-radius:50%;}
+.user_id>span{display:inline-block;width:2.251rem;height:0.604rem;border-radius:0.302rem;}
+
+.balance-box .s-mt{padding-top:0.048rem;}
+
+
+.order-box .no{position:absolute;color:#ff4141;border:1px solid #ff4141;border-radius:12px;padding:2px 8px;}
+/*康华个人中心结束*/
+
+/*我的康华会员*/
+.my-user-tit{border-bottom:1px solid #ebedf0;padding-right:35px;}
+.my-user-block .item-content{padding-left:0;}
+.my-user-block ul{background:none;}
+.my-user-block .item-inner:after{
+	display:none;
+}
+.my-user-block ul:after{display:none;}
+.my-user-block .item-title{width:100%;}
+.my-user-block .accordion-item .content-block{margin-bottom:.2415rem}
+/*我的康华会员*/
+
+/*我的邀请码*/
+.ma-box{width:70%;margin:0 auto;position:relative;}
+.ma-box h6{border-bottom:1px dashed #f5f7fa;margin-left:-.3623rem;margin-right:-.3623rem;}
+.ma-box .y-left,.ma-box .y-right{
+	position:absolute;
+	display:block;
+	width:1.208rem;height:1.208rem;
+	top:50%;margin-top:-0.604rem;
+	border-radius:50%;
+}
+.ma-box .y-left{left:-0.604rem;}
+.ma-box .y-right{right:-0.604rem;}
+.ma-box .sha-bottom{
+   display:block;
+	background:url("../images/ewmbg.png") no-repeat center center;
+	height:1.208rem;width:6.884rem;
+	position:absolute;bottom:-1.208rem;
+	left:50%;margin-left:-3.442rem;
+}
+/*我的邀请码结束*/
+/*余额明细*/
+.gold-box .button{border-color:#ebedf0;display:inline;padding:8px 30px;}
+.cz-box{position:relative;}
+.cz-box .go-name{position:absolute;right:0.362rem;}
+.gold-toolbar a{border-bottom:2px solid #fff;}
+.gold-toolbar a.active{
+	border-bottom:2px solid #2e92f4;
+}
+/*余额明细*/
